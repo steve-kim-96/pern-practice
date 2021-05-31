@@ -6,3 +6,31 @@
 4. Set up scripts to watch ts file and nodemon index.js file in dist
 NODE AND EXPRESS CONNECTION DONE
 
+5. In root folder (same folder that holds package.json) create "ormconfig.json" file
+6. Configure for database type, host (most likely localhost), username of db, password of db, synchronize (for auto migration and table update) and **OPTIONAL** logging-- to log the SQL
+7. create a connection between typeorm and db with createConnection function provided by TypeOrm
+8. encase  
+
+const main = async () => {
+  const connection = await createConnection({
+    type: "postgres",
+    url: "postgresql://postgres:postgres@localhost:5432/pern",
+    logging: true,
+    synchronize: true,
+    entities: [Post],
+  });
+
+  const app = express();
+
+  app.listen(port, () => {
+    console.log(`Listening on port ${port}`);
+  });
+}
+
+  in a main async function to make it easier
+
+9. call the main function at the bottom of the file outside main function
+
+10. create entities folder and create entity for database
+11. include entity in ormconfig file
+12. run development environment
