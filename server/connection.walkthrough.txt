@@ -1,0 +1,8 @@
+1. Install packages: TS, Node, Express, Dotenv-safe
+1b. Install dev package types for node and express
+1c. NPX tsconfig.json to get tsconfig file
+2. create environment variable for port
+3. In index.ts file import express and dotenv-safe/config
+4. Set up scripts to watch ts file and nodemon index.js file in dist
+NODE AND EXPRESS CONNECTION DONE
+
