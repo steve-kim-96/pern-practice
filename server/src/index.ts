@@ -5,8 +5,6 @@ import { createConnection } from "typeorm";
 // import path from "path";
 import { Post } from "./entities/Post";
 
-const port = 4000;
-
 const main = async () => {
   const connection = await createConnection({
     type: "postgres",
@@ -18,8 +16,12 @@ const main = async () => {
 
   const app = express();
 
-  app.listen(port, () => {
-    console.log(`Listening on port ${port}`);
+  app.get("/", (req, res) => {
+    res.send("please?");
+  });
+
+  app.listen(4000, () => {
+    console.log("Server started on port 4000");
   });
 };
 
