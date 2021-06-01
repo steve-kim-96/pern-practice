@@ -10,30 +10,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Post = void 0;
+const type_graphql_1 = require("type-graphql");
 const typeorm_1 = require("typeorm");
 let Post = class Post extends typeorm_1.BaseEntity {
 };
 __decorate([
+    type_graphql_1.Field(() => type_graphql_1.Int),
     typeorm_1.PrimaryGeneratedColumn(),
     __metadata("design:type", Number)
 ], Post.prototype, "id", void 0);
 __decorate([
+    type_graphql_1.Field(),
     typeorm_1.Column(),
     __metadata("design:type", String)
 ], Post.prototype, "title", void 0);
 __decorate([
+    type_graphql_1.Field(),
     typeorm_1.Column(),
     __metadata("design:type", String)
 ], Post.prototype, "text", void 0);
 __decorate([
+    type_graphql_1.Field(),
     typeorm_1.CreateDateColumn(),
     __metadata("design:type", Date)
 ], Post.prototype, "createdAt", void 0);
 __decorate([
+    type_graphql_1.Field(),
     typeorm_1.UpdateDateColumn(),
     __metadata("design:type", Date)
 ], Post.prototype, "updatedAt", void 0);
 Post = __decorate([
+    type_graphql_1.ObjectType(),
     typeorm_1.Entity()
 ], Post);
 exports.Post = Post;
