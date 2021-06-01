@@ -34,3 +34,5 @@ const main = async () => {
 10. create entities folder and create entity for database
 11. include entity in ormconfig file
 12. run development environment
+
+pg_ctlcluster 12 main start-- to start the cluster
