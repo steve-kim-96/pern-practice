@@ -18,4 +18,12 @@ export class PostResolver {
       ...input,
     }).save();
   }
+  @Mutation(() => Boolean)
+  async updatePost(
+    @Arg("input") input: PostInput,
+    @Arg("id") id: number
+  ): Promise<boolean> {
+    await getRepository(Post).update(id, { ...input });
+    return true;
+  }
 }

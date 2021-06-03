@@ -8,17 +8,31 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+var _a, _b;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PostResolver = void 0;
 const type_graphql_1 = require("type-graphql");
 const typeorm_1 = require("typeorm");
 const Post_1 = require("../entities/Post");
+const postInput_1 = require("../inputs/postInput");
 let PostResolver = class PostResolver {
     async posts() {
         const posts = await typeorm_1.getRepository(Post_1.Post)
             .createQueryBuilder("post")
             .getMany();
         return posts;
+    }
+    async createPost(input) {
+        return Post_1.Post.create({
+            ...input,
+        }).save();
+    }
+    async updatePost(input, id) {
+        await typeorm_1.getRepository(Post_1.Post).update(id, { ...input });
+        return true;
     }
 };
 __decorate([
@@ -27,6 +41,21 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], PostResolver.prototype, "posts", null);
+__decorate([
+    type_graphql_1.Mutation(() => Post_1.Post),
+    __param(0, type_graphql_1.Arg("input")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [typeof (_a = typeof postInput_1.PostInput !== "undefined" && postInput_1.PostInput) === "function" ? _a : Object]),
+    __metadata("design:returntype", Promise)
+], PostResolver.prototype, "createPost", null);
+__decorate([
+    type_graphql_1.Mutation(() => Boolean),
+    __param(0, type_graphql_1.Arg("input")),
+    __param(1, type_graphql_1.Arg("id")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [typeof (_b = typeof postInput_1.PostInput !== "undefined" && postInput_1.PostInput) === "function" ? _b : Object, Number]),
+    __metadata("design:returntype", Promise)
+], PostResolver.prototype, "updatePost", null);
 PostResolver = __decorate([
     type_graphql_1.Resolver()
 ], PostResolver);
