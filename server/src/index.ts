@@ -1,12 +1,11 @@
-import "reflect-metadata";
-import express from "express";
+import { ApolloServer } from "apollo-server-express";
 import "dotenv-safe/config";
+import express from "express";
+import "reflect-metadata";
+import { buildSchema } from "type-graphql";
 import { createConnection } from "typeorm";
 // import path from "path";
 import { Post } from "./entities/Post";
-import { ApolloServer } from "apollo-server-express";
-import { buildSchema } from "type-graphql";
-import { HelloResolver } from "./resolvers/hello";
 import { PostResolver } from "./resolvers/post";
 
 const main = async () => {
@@ -22,7 +21,7 @@ const main = async () => {
   const port = process.env.PORT;
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [HelloResolver, PostResolver],
+      resolvers: [PostResolver],
       validate: false,
     }),
   });
