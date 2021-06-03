@@ -1,6 +1,7 @@
-import { Query, Resolver } from "type-graphql";
+import { Arg, Mutation, Query, Resolver } from "type-graphql";
 import { getRepository } from "typeorm";
 import { Post } from "../entities/Post";
+import { PostInput } from "../inputs/postInput";
 
 @Resolver()
 export class PostResolver {
@@ -10,5 +11,11 @@ export class PostResolver {
       .createQueryBuilder("post")
       .getMany();
     return posts;
+  }
+  @Mutation(() => Post)
+  async createPost(@Arg("input") input: PostInput): Promise<Post> {
+    return Post.create({
+      ...input,
+    }).save();
   }
 }
