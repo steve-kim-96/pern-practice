@@ -11,8 +11,9 @@ const Post_1 = require("./entities/Post");
 const apollo_server_express_1 = require("apollo-server-express");
 const type_graphql_1 = require("type-graphql");
 const hello_1 = require("./resolvers/hello");
+const post_1 = require("./resolvers/post");
 const main = async () => {
-    const connection = await typeorm_1.createConnection({
+    await typeorm_1.createConnection({
         type: "postgres",
         url: "postgresql://postgres:postgres@localhost:5432/pern",
         logging: true,
@@ -23,9 +24,9 @@ const main = async () => {
     const port = process.env.PORT;
     const apolloServer = new apollo_server_express_1.ApolloServer({
         schema: await type_graphql_1.buildSchema({
-            resolvers: [hello_1.HelloResolver],
-            validate: false
-        })
+            resolvers: [hello_1.HelloResolver, post_1.PostResolver],
+            validate: false,
+        }),
     });
     apolloServer.applyMiddleware({ app });
     app.listen(port, () => {
