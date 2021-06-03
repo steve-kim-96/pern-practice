@@ -34,6 +34,10 @@ let PostResolver = class PostResolver {
         await typeorm_1.getRepository(Post_1.Post).update(id, { ...input });
         return true;
     }
+    async deletePost(id) {
+        await typeorm_1.getRepository(Post_1.Post).delete(id);
+        return true;
+    }
 };
 __decorate([
     type_graphql_1.Query(() => [Post_1.Post]),
@@ -56,6 +60,13 @@ __decorate([
     __metadata("design:paramtypes", [typeof (_b = typeof postInput_1.PostInput !== "undefined" && postInput_1.PostInput) === "function" ? _b : Object, Number]),
     __metadata("design:returntype", Promise)
 ], PostResolver.prototype, "updatePost", null);
+__decorate([
+    type_graphql_1.Mutation(() => Boolean),
+    __param(0, type_graphql_1.Arg("id")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], PostResolver.prototype, "deletePost", null);
 PostResolver = __decorate([
     type_graphql_1.Resolver()
 ], PostResolver);

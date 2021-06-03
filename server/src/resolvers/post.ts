@@ -26,4 +26,9 @@ export class PostResolver {
     await getRepository(Post).update(id, { ...input });
     return true;
   }
+  @Mutation(() => Boolean)
+  async deletePost(@Arg("id") id: number): Promise<boolean> {
+    await getRepository(Post).delete(id);
+    return true;
+  }
 }
