@@ -8,6 +8,8 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 
+// @Entity creates a typeorm schema and @ObjectType creates a GraphQL schema
+// Load this into the apolloServer in index.ts
 @ObjectType()
 @Entity()
 export class Post extends BaseEntity {
