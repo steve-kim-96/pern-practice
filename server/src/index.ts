@@ -4,6 +4,7 @@ import "dotenv-safe/config";
 import { createConnection } from "typeorm";
 // import path from "path";
 import { Post } from "./entities/Post";
+import { ApolloServer } from 'apollo-server-express'
 
 const main = async () => {
   const connection = await createConnection({
@@ -15,12 +16,12 @@ const main = async () => {
   });
 
   const app = express();
+  const port = process.env.PORT
+  const apolloServer = new ApolloServer({
 
-  app.get("/", (req, res) => {
-    res.send("please?");
-  });
+  })
 
-  app.listen(4000, () => {
+  app.listen(port, () => {
     console.log("Server started on port 4000");
   });
 };
