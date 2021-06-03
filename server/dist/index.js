@@ -9,6 +9,8 @@ require("dotenv-safe/config");
 const typeorm_1 = require("typeorm");
 const Post_1 = require("./entities/Post");
 const apollo_server_express_1 = require("apollo-server-express");
+const type_graphql_1 = require("type-graphql");
+const hello_1 = require("./resolvers/hello");
 const main = async () => {
     const connection = await typeorm_1.createConnection({
         type: "postgres",
@@ -19,7 +21,13 @@ const main = async () => {
     });
     const app = express_1.default();
     const port = process.env.PORT;
-    const apolloServer = new apollo_server_express_1.ApolloServer({});
+    const apolloServer = new apollo_server_express_1.ApolloServer({
+        schema: await type_graphql_1.buildSchema({
+            resolvers: [hello_1.HelloResolver],
+            validate: false
+        })
+    });
+    apolloServer.applyMiddleware({ app });
     app.listen(port, () => {
         console.log("Server started on port 4000");
     });
