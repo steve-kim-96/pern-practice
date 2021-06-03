@@ -8,6 +8,7 @@ const express_1 = __importDefault(require("express"));
 require("dotenv-safe/config");
 const typeorm_1 = require("typeorm");
 const Post_1 = require("./entities/Post");
+const apollo_server_express_1 = require("apollo-server-express");
 const main = async () => {
     const connection = await typeorm_1.createConnection({
         type: "postgres",
@@ -17,10 +18,9 @@ const main = async () => {
         entities: [Post_1.Post],
     });
     const app = express_1.default();
-    app.get("/", (req, res) => {
-        res.send("please?");
-    });
-    app.listen(4000, () => {
+    const port = process.env.PORT;
+    const apolloServer = new apollo_server_express_1.ApolloServer({});
+    app.listen(port, () => {
         console.log("Server started on port 4000");
     });
 };
