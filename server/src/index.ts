@@ -12,7 +12,7 @@ import { PostResolver } from "./resolvers/post";
 const main = async () => {
   await createConnection({
     type: "postgres",
-    url: "postgresql://postgres:postgres@localhost:5433/pern",
+    url: "postgresql://postgres:postgres@localhost:5432/pern",
     logging: true,
     synchronize: true,
     entities: [Post, User],
