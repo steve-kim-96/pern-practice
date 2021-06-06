@@ -6,6 +6,7 @@ import "reflect-metadata";
 import { buildSchema } from "type-graphql";
 import { createConnection } from "typeorm";
 import { Post } from "./entities/Post";
+import { User } from "./entities/User";
 import { PostResolver } from "./resolvers/post";
 
 const main = async () => {
@@ -13,9 +14,9 @@ const main = async () => {
     type: "postgres",
     url: "postgresql://postgres:postgres@localhost:5433/pern",
     logging: true,
-    synchronize: false,
-    entities: [Post],
-    migrations: [path.join(__dirname, "./migrations/*")]
+    synchronize: true,
+    entities: [Post, User],
+    migrations: [path.join(__dirname, "./migrations/*")],
   });
 
   const app = express();
@@ -33,7 +34,6 @@ const main = async () => {
   app.listen(port, () => {
     console.log("Server started on port 4000");
   });
-
 };
 
 main().catch((error) => {
