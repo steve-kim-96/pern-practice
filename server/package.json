@@ -13,6 +13,7 @@
   "description": "",
   "dependencies": {
     "apollo-server-express": "^2.25.0",
+    "argon2": "^0.28.1",
     "class-validator": "^0.13.1",
     "dotenv-safe": "^8.2.0",
     "express": "^4.17.1",
